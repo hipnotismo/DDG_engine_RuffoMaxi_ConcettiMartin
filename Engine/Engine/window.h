@@ -1,3 +1,4 @@
+#include <glew.h>
 #include <glfw3.h>
 #ifndef WINDOW_H
 #define WINDOW_H

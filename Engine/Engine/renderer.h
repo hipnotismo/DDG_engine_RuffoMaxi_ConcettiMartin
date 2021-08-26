@@ -1,3 +1,4 @@
+#include <glew.h>
 #include <glfw3.h>
 #include "window.h"
 #ifndef RENDERER_H

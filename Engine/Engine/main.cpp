@@ -13,7 +13,6 @@ int main(void)
         engine->EngineEnd();
         return -1;
     }
-
     /* Loop until the user closes the window */
     while (engine->Running())
     {
