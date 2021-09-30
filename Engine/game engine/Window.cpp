@@ -1,10 +1,6 @@
 
 #include "Window.h"
-#include <stdlib.h>
-#include <string>
-#include <iostream>
-#include "glew.h"
-#include "glfw3.h"
+
 
 Window::Window() {
 
@@ -12,9 +8,9 @@ Window::Window() {
 Window::~Window() {
 
 }
-int Window::StartWindow(int width, int height, const char* windowName) {
-	GLFWwindow* window;
 
+int Window::Start(int width, int height, const char* windowName) 
+{
 	//Initialize the library /
 	if (!glfwInit())
 		return -1;
@@ -30,19 +26,33 @@ int Window::StartWindow(int width, int height, const char* windowName) {
 	// Make the window's context current /
 	glfwMakeContextCurrent(window);
 
-	//Loop until the user closes the window /
-	while (!glfwWindowShouldClose(window))
-	{
-		// Render here /
-		glClear(GL_COLOR_BUFFER_BIT);
+	glewInit();
 
+	std::cout << glGetString(GL_VERSION) << std::endl;
+}
+
+void Window::ClearBackground()
+{
+	// Swap front and back buffers 
+	glClear(GL_COLOR_BUFFER_BIT);
+}
+
+int Window::WindowShouldClose()
+{
+	return glfwWindowShouldClose(window);	
+}
+
+void Window::FinishWindowCycle()
+{
 		// Swap front and back buffers /
 		glfwSwapBuffers(window);
 
 		// Poll for and process events 
 		glfwPollEvents();
-	}
+}
 
+void Window::CloseWindow()
+{
 	glfwTerminate();
 }
 
